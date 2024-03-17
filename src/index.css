@@ -1,3 +1,148 @@
+@import "./assets/fonts/fonts.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*Scrollbar customizing*/
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #bfbfbf;
+    cursor: pointer;
+}
+
+.custom-range-inp::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 1rem;
+    width: 1rem;
+    background: #e06208;
+    border-radius: 50%;
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background: #ffb27a;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 20px;
+    background: #e06208;
+    cursor: pointer;
+}
+
+/*Button customizing*/
+
+.default-btn {
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.default-btn:focus {
+    background: #2563eb;
+}
+
+.outlined-btn {
+    color: #e06208;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    padding: 0 0.625rem;
+    margin: 0 0.375rem;
+    border-radius: 0.25rem;
+    border: 1px solid #e06208;
+    transition: all ease 0.2s;
+}
+
+.outlined-btn:hover {
+    background: #3b82f6;
+    color: #fff;
+    border: 1px solid #3b82f6;
+}
+
+.outlined-btn:focus {
+    outline: none;
+    background: #2563eb;
+    color: #fff;
+}
+
+/*Link customizing*/
+
+.navlink {
+    transition: all ease 0.2s
+}
+
+.navlink:hover {
+    color: #e06208;
+}
+
+/*Range input customizing*/
+
+.custom-range-value {
+    position: relative;
+    width: 100%;
+}
+.custom-range-value span {
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    color: #e06208;
+    top: -2.5rem;
+    font-weight: 600;
+}
+
+.custom-range-value span::after {
+    content: "";
+    position: absolute;
+    left: 16%;
+    top: -10%;
+    height: 2rem;
+    width: 2rem;
+    transform: translateX(-15%) rotate(45deg);
+    border: 3px solid #e06208;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    z-index: -1;
+}
+
+.custom-range-inp {
+    -webkit-appearance: none;
+    height: 2px;
+    width: 71%;
+    background: #878787;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+/*Checkbox customizing*/
+
+.custom-checkbox {
+    accent-color: #e06208;
+    width: 16px;
+    height: 16px;
+}
+
+/*Another styles*/
+
+.product-card-size {
+    width: 276px;
+    height: calc(298px / 1.4);
+}
+
+.product-title {
+    max-width: 244px;
+}
