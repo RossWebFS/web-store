@@ -17,7 +17,7 @@ export const ProductsList = () => {
         Showing <span className="orbitron-font">{productsData.length}</span>{" "}
         results from total{" "}
         <span className="orbitron-font">
-          {JSON.parse(localStorage.getItem("productsData")).length}
+          {JSON.parse(localStorage.getItem("productsData"))?.length || 0}
         </span>{" "}
         {selectedFilter.length ? "for " : ""}
         <span className="font-semibold">{selectedFilter.join(" and ")}</span>

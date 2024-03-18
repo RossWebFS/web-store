@@ -29,7 +29,7 @@ export const ProductCard = ({ productItem }) => {
             <button className="outlined-btn">XL</button>
           </div>
           <div className="mt-2 flex justify-between items-center">
-            {cartProducts.find((i) => i.id == productItem.id) ? (
+            {cartProducts && cartProducts.find((i) => i.id == productItem.id) ? (
               <button
                 className="bg-blue-500 default-btn rubik-font tracking-wide hover:bg-blue-600"
                 onClick={() => {
@@ -46,7 +46,7 @@ export const ProductCard = ({ productItem }) => {
               <button
                 className="default-btn hover:bg-blue-500 bg-orange-500 rubik-font tracking-wide"
                 onClick={() => {
-                  setCartProducts([...cartProducts, productItem]);
+                  setCartProducts(cartProducts ? [...cartProducts, productItem] : [productItem]);
                 }}
               >
                 Add to Card

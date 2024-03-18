@@ -8,7 +8,7 @@ export const ProductFilter = () => {
   const [openedMainAccordion, setOpenedMainAccordion] = useState(true);
   const [openedFilterAccordion, setOpenedFilterAccordion] = useState(false);
 
-  const { setProductsData, selectedFilter, setSelectedFilter } =
+  const { productsData, setProductsData, selectedFilter, setSelectedFilter } =
     useProductContext();
 
   useEffect(() => {
@@ -16,16 +16,18 @@ export const ProductFilter = () => {
   }, [selectedFilter]);
 
   const filterProducts = (category) => {
-    if (category.length > 0) {
+    if (category.length > 0 && productsData.length) {
         setProductsData([
-          ...JSON.parse(localStorage.getItem("productsData")).filter((i) =>
+          ...productsData.filter((i) =>
             i.category == category
           ),
         ]);
     } else {
-      setProductsData([
-        ...JSON.parse(localStorage.getItem("productsData"))
-    ])}
+      setProductsData( (
+        JSON.parse(localStorage.getItem("productsData"))) ? 
+        [
+          ...JSON.parse(localStorage.getItem("productsData"))] : []
+      )}
   };
 
   return (

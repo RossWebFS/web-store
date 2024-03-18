@@ -4,15 +4,15 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 export const CartProductsPage = () => {
   const { cartProducts, setCartProducts } = useProductContext();
-  const [showedItem, setShowedItem] = useState(cartProducts[0]);
+  const [showedItem, setShowedItem] = useState(cartProducts ? cartProducts[0] : []);
 
   useEffect(() => {
-    setShowedItem(cartProducts[0]);
+    setShowedItem(cartProducts ? cartProducts[0] : []);
   }, [cartProducts]);
 
   return (
     <main className="flex justify-center items-strantch px-5 mt-12 max-w-screen-sm md:max-w-screen-xl md:mx-auto">
-      {cartProducts.length ? (
+      {cartProducts && cartProducts.length ? (
         <>
           <section
             style={{ height: 40 + "rem" }}

@@ -24,7 +24,7 @@ export const Navbar = () => {
             Cart
           </NavLink>
           <span className=" text-white bg-orange-500 px-3 py-1 mr-3 rounded-full">
-            {cartProducts.length}
+            {cartProducts ? cartProducts.length : 0}
           </span>
         </li>
       </ul>
