@@ -11,17 +11,21 @@ export const ProductFilter = () => {
   const { productsData, setProductsData, selectedFilter, setSelectedFilter } =
     useProductContext();
 
+window.selected = selectedFilter
+
   useEffect(() => {
     filterProducts(selectedFilter);
   }, [selectedFilter]);
 
   const filterProducts = (category) => {
-    if (category.length > 0 && productsData.length) {
+    if (category.length && productsData) {
         setProductsData([
-          ...productsData.filter((i) =>
-            i.category == category
-          ),
+          ...JSON.parse(localStorage.getItem("productsData")).filter((i) =>
+            category.filter(c => c === i.category).length === category.length
+          )
+          
         ]);
+        
     } else {
       setProductsData( (
         JSON.parse(localStorage.getItem("productsData"))) ? 
