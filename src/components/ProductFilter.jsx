@@ -1,4 +1,5 @@
 import { Accordion } from "./Accordion";
+import { Checkbox } from "./Checkbox";
 import { RangeInp } from "./RangeInp";
 import { IoIosArrowDown } from "react-icons/io";
 import { useEffect, useState } from "react";
@@ -11,27 +12,32 @@ export const ProductFilter = () => {
   const { productsData, setProductsData, selectedFilter, setSelectedFilter } =
     useProductContext();
 
-window.selected = selectedFilter
+  window.selected = selectedFilter;
+
+  useEffect(() => {
+    setSelectedFilter(JSON.parse(localStorage.getItem("filteredProducts")) || "[]")
+  } , [])
 
   useEffect(() => {
     filterProducts(selectedFilter);
+    localStorage.setItem("filteredProducts", JSON.stringify(selectedFilter))
   }, [selectedFilter]);
 
   const filterProducts = (category) => {
     if (category.length && productsData) {
-        setProductsData([
-          ...JSON.parse(localStorage.getItem("productsData")).filter((i) =>
-            category.filter(c => c === i.category).length === category.length
-          )
-          
-        ]);
-        
+      setProductsData([
+        ...JSON.parse(localStorage.getItem("productsData")).filter(
+          (i) =>
+            category.filter((c) => c === i.category).length === category.length
+        ),
+      ]);
     } else {
-      setProductsData( (
-        JSON.parse(localStorage.getItem("productsData"))) ? 
-        [
-          ...JSON.parse(localStorage.getItem("productsData"))] : []
-      )}
+      setProductsData(
+        JSON.parse(localStorage.getItem("productsData"))
+          ? [...JSON.parse(localStorage.getItem("productsData"))]
+          : []
+      );
+    }
   };
 
   return (
@@ -66,34 +72,11 @@ window.selected = selectedFilter
           >
             <ul className="pl-3">
               <li className="my-4">
-                <input
-                  className="mr-2 custom-checkbox"
-                  type="checkbox"
-                  onChange={(event) => {
-                    event.target.checked
-                      ? setSelectedFilter([...selectedFilter, "women's clothing"])
-                      : setSelectedFilter(
-                          selectedFilter.filter((i) => i !== "women's clothing")
-                        );
-                  }}
-                  checked={selectedFilter.find(c => c === "women's clothing")}
-                />
-                <label htmlFor="">Clothing</label>
+                <Checkbox filterTitle="women's clothing" />
+                <label htmlFor="wome's clothing">Clothing</label>
               </li>
               <li className="my-4">
-                <input
-                  className="mr-2 custom-checkbox"
-                  id="jewelery-checkbox"
-                  type="checkbox"
-                  onChange={(event) => {
-                    event.target.checked
-                      ? setSelectedFilter([...selectedFilter, "jewelery"])
-                      : setSelectedFilter(
-                          selectedFilter.filter((i) => i !== "jewelery")
-                        );
-                  }}
-                  checked={selectedFilter.find(c => c === "jewelery")}
-                />
+                <Checkbox filterTitle="jewelery" />
                 <label htmlFor="jewelery-checkbox">Jewelery</label>
               </li>
 
@@ -109,34 +92,12 @@ window.selected = selectedFilter
           >
             <ul className="pl-3">
               <li className="my-4">
-                <input
-                  className="mr-2 custom-checkbox"
-                  type="checkbox"
-                  onChange={(event) => {
-                    event.target.checked
-                      ? setSelectedFilter([...selectedFilter, "men's clothing"])
-                      : setSelectedFilter(
-                          selectedFilter.filter((i) => i !== "men's clothing")
-                        );
-                  }}
-                  checked={selectedFilter.find(c => c === "men's clothing")}
-                />
-                <label htmlFor="">Clothing</label>
+                <Checkbox filterTitle="men's clothing" />
+                <label htmlFor="men's clothing">Clothing</label>
               </li>
               <li className="my-4">
-                <input
-                  className="mr-2 custom-checkbox"
-                  type="checkbox"
-                  onChange={(event) => {
-                    event.target.checked
-                      ? setSelectedFilter([...selectedFilter, "electronics"])
-                      : setSelectedFilter(
-                          selectedFilter.filter((i) => i !== "electronics")
-                        );
-                  }}
-                  checked={selectedFilter.find(c => c === "electronics")}
-                />
-                <label htmlFor="">Electronics</label>
+                <Checkbox filterTitle="electronics" />
+                <label htmlFor="electronics">Electronics</label>
               </li>
 
               <li className="mt-12">

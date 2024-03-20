@@ -1,7 +1,7 @@
 import { ProductCard } from "./ProductCard";
 import { useProductContext } from "../contexts/ProductProvider";
 
-export const ProductsList = () => {
+export const ProductsList = ({isActiveModal, setIsActiveModal}) => {
   const {
     productsData,
     selectedFilter,
@@ -10,7 +10,6 @@ export const ProductsList = () => {
     setCartProducts,
   } = useProductContext();
 
-  window.data = productsData;
   return (
     <section className="w-3/4">
       <p>
@@ -28,6 +27,7 @@ export const ProductsList = () => {
           {selectedFilter.map((i) => {
             return (
               <li
+                key={new Date()}
                 className={`${
                   !selectedFilter.length && "hidden"
                 } mx-2 px-3 py-1.5 rounded-full shadow-md`}
@@ -54,6 +54,8 @@ export const ProductsList = () => {
             productItem={i}
             cartProducts={cartProducts}
             setCartProducts={setCartProducts}
+            isActiveModal={isActiveModal}
+            setIsActiveModal={setIsActiveModal}
           />
         ))}
       </ul>

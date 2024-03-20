@@ -49,10 +49,6 @@
     transition: all 0.2s ease;
 }
 
-.default-btn:focus {
-    background: #2563eb;
-}
-
 .outlined-btn {
     color: #e06208;
     font-size: 1.125rem;

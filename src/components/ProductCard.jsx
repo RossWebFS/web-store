@@ -1,11 +1,19 @@
 import { useProductContext } from "../contexts/ProductProvider";
 import { CiHeart } from "react-icons/ci";
-export const ProductCard = ({ productItem }) => {
+export const ProductCard = ({ productItem, isActiveModal, setIsActiveModal }) => {
   const { cartProducts, setCartProducts } =
     useProductContext();
 
   return (
-    <li className="flex flex-col items-stretch rounded-lg shadow-lg border border-gray-300">
+    <li
+    onClick={() => setIsActiveModal({
+      title: productItem.title,
+      image: productItem.image,
+      isActive: !isActiveModal.isActive,
+      description: productItem.description,
+      price: productItem.price,
+      id: productItem.id
+    })} className="flex flex-col items-stretch rounded-lg shadow-lg border border-gray-300">
       <img
         className="rounded-t-lg text-l product-card-size object-cover"
         src={productItem.image}
@@ -29,7 +37,7 @@ export const ProductCard = ({ productItem }) => {
             <button className="outlined-btn">XL</button>
           </div>
           <div className="mt-2 flex justify-between items-center">
-            {cartProducts && cartProducts.find((i) => i.id == productItem.id) ? (
+            {cartProducts && cartProducts.find((i) => i.id === productItem.id) ? (
               <button
                 className="bg-blue-500 default-btn rubik-font tracking-wide hover:bg-blue-600"
                 onClick={() => {
